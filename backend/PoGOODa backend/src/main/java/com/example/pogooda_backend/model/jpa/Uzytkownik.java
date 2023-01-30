@@ -8,11 +8,11 @@ import java.sql.Date;
 public class Uzytkownik {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
-    Date createdAt;
+    private Date createdAt;
 
-    String login;
+    private String login;
 
 //  usuwam hasło, dla uproszczenia autoryzacji (po prostu tokeny i tyle, bez logowania)
 //    String encryptedPassword;

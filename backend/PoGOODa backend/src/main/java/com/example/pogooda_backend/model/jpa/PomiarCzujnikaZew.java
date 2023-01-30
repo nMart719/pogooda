@@ -8,27 +8,27 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor
 public class PomiarCzujnikaZew extends PomiarCzujnika {
 
-    private Double cisnienieAtmosferyczne;
+    private Float cisnienieAtmosferyczne;
 
-    private Double opadyDeszczu;
+    private Float opadyDeszczu;
 
-    private Double jakoscPowietrza;
+    private Float jakoscPowietrza;
 
-    private Double predkoscWiatru;
+    private Float predkoscWiatru;
 
-    private Double promieniowanieSloneczne;
+    private Float promieniowanieSloneczne;
 
-    private Double temperaturaOdczuwalna;
+    private Float temperaturaOdczuwalna;
 
-    private Double temperaturaZewnetrzna;
+    private Float temperaturaZewnetrzna;
 
-    private Double wilgotnoscZewnetrzna;
+    private Float wilgotnoscZewnetrzna;
 
-    private Double fars;
+    private Float fars;
 
-    private Double uvi;
+    private Float uvi;
 
-    public PomiarCzujnikaZew(StacjaPogodowa stacjaPogodowa, StanCzujnika stanCzujnika, Double cisnienieAtmosferyczne, Double opadyDeszczu, Double jakoscPowietrza, Double predkoscWiatru, Double promieniowanieSloneczne, Double temperaturaOdczuwalna, Double temperaturaZewnetrzna, Double wilgotnoscZewnetrzna, Double fars, Double uvi) {
+    public PomiarCzujnikaZew(StacjaPogodowa stacjaPogodowa, StanCzujnika stanCzujnika, Float cisnienieAtmosferyczne, Float opadyDeszczu, Float jakoscPowietrza, Float predkoscWiatru, Float promieniowanieSloneczne, Float temperaturaOdczuwalna, Float temperaturaZewnetrzna, Float wilgotnoscZewnetrzna, Float fars, Float uvi) {
         super(stacjaPogodowa, stanCzujnika);
         this.cisnienieAtmosferyczne = cisnienieAtmosferyczne;
         this.opadyDeszczu = opadyDeszczu;

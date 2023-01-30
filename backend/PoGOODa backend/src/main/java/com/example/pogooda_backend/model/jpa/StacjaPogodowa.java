@@ -9,21 +9,21 @@ import java.util.Set;
 public class StacjaPogodowa {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @OneToOne
-    Wymiary wymiary;
+    private Wymiary wymiary;
 
-    Double wagaStacji;
+    private Float wagaStacji;
 
     @OneToOne
-    Gwarancja gwarancja;
+    private Gwarancja gwarancja;
 
     @Enumerated(EnumType.STRING)
-    StanPracyStacjiPogodowej stanPracy;
+    private StanPracyStacjiPogodowej stanPracy;
 
     @ManyToOne
-    Uzytkownik wlasciciel;
+    private Uzytkownik wlasciciel;
 
     @OneToMany(mappedBy = "stacjaPogodowa")
     private Set<PomiarCzujnika> zapisanePomiary = new HashSet<>();

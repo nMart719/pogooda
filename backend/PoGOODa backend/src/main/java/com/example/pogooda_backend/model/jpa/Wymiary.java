@@ -11,11 +11,11 @@ public class Wymiary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    Integer szerokosc;
+    private Integer szerokosc;
 
-    Integer wysokosc;
+    private Integer wysokosc;
 
-    Integer dlugosc;
+    private Integer dlugosc;
 
     public Wymiary(Integer szerokosc, Integer wysokosc, Integer dlugosc) {
         this.szerokosc = szerokosc;

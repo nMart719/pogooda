@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 public class PomiarCzujnikaWew extends PomiarCzujnika{
     private Integer maksymalnyZasieg;
 
-    private Double temperaturaWewnetrzna;
+    private Float temperaturaWewnetrzna;
 
-    private Double wilgotnoscWewnetrzna;
+    private Float wilgotnoscWewnetrzna;
 
-    public PomiarCzujnikaWew(StacjaPogodowa stacjaPogodowa, StanCzujnika stanCzujnika, Integer maksymalnyZasieg, Double temperaturaWewnetrzna, Double wilgotnoscWewnetrzna) {
+    public PomiarCzujnikaWew(StacjaPogodowa stacjaPogodowa, StanCzujnika stanCzujnika, Integer maksymalnyZasieg, Float temperaturaWewnetrzna, Float wilgotnoscWewnetrzna) {
         super(stacjaPogodowa, stanCzujnika);
         this.maksymalnyZasieg = maksymalnyZasieg;
         this.temperaturaWewnetrzna = temperaturaWewnetrzna;

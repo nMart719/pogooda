@@ -14,9 +14,9 @@ public class Gwarancja {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    String hashGodnosci;
+    private String hashGodnosci;
 
-    String instrukcjaUzytkownika;
+    private String instrukcjaUzytkownika;
 
     public Gwarancja(String hashGodnosci, String instrukcjaUzytkownika) {
         this.hashGodnosci = hashGodnosci;
