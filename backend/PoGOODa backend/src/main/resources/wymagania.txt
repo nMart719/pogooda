@@ -1,0 +1,18 @@
+1. Aktualne warunki pogodowe
+	- miejsce
+	- temperatura
+	- wilgotność
+	- prędkość wiatru
+	- ciśnienie
+	- punkt rosy
+	- index
+	- zanieczyszczenie
+	- ocena pogody
+2. Prognoza pogody na 10 dni
+	[] - dzień
+	- temperatura
+	- prawdopodobieństwo
+	- wiatr
+	- ocena pogody
+3. Pobranie aktualnych podpowiedzi
+	-
