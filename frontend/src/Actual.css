@@ -1,0 +1,50 @@
+.main {
+  color: #ffffff;
+}
+section#left,
+section#right {
+  padding-left: 50px;
+}
+section {
+  padding-top: 50px;
+  width: 20%;
+}
+h2 path {
+  fill: #08a2d3;
+}
+h1,
+h2 {
+  color: #ffffff;
+  font-weight: 400;
+}
+h2 {
+  font-size: 24px;
+}
+h1 {
+  margin: 2em 0;
+  font-size: 48px;
+}
+
+section ul {
+  padding: 0;
+}
+
+section ul li {
+  margin: 25% 0;
+}
+
+#bigIcon {
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  width: 40%;
+  justify-content: center;
+}
+
+h2#temperature {
+  font-size: 80px;
+  margin: 0;
+}
+section#right ul li:first-child {
+  margin-top: 6.65em;
+}

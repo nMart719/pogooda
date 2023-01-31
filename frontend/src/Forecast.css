@@ -1,0 +1,43 @@
+img {
+  /* border: 1px solid blue; */
+}
+
+.center {
+  text-align: center;
+}
+.center.biggerText {
+  display: block;
+  font-size: 25px;
+  margin: 0;
+}
+#days {
+  color: #ffffff;
+  margin: auto 0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  min-width: max-content;
+}
+
+#days > li {
+  background-color: rgba(8, 162, 211, 39%);
+  margin-left: 5%;
+  padding: 20px;
+  padding-top: 50px;
+  border-radius: 10px;
+}
+
+img.smallIcon {
+  margin-right: 10px;
+  /* border: 1px solid black; */
+}
+span {
+  vertical-align: middle;
+}
+p {
+  display: flex;
+  /* border: 1px solid blue; */
+  align-items: center;
+  vertical-align: middle;
+}
