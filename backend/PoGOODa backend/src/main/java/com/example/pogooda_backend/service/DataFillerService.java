@@ -1,6 +1,6 @@
 package com.example.pogooda_backend.service;
 
-import com.example.pogooda_backend.external_weather_api.MateomaticsApi;
+import com.example.pogooda_backend.external_weather_api.MateomaticsApiService;
 import com.example.pogooda_backend.external_weather_api.WeatherSensorsDto;
 import com.example.pogooda_backend.model.jpa.PomiarCzujnika;
 import com.example.pogooda_backend.model.jpa.PomiarCzujnikaZew;
@@ -21,7 +21,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class DataFillerService {
 
-    private final MateomaticsApi mateomaticsApi;
+    private final MateomaticsApiService mateomaticsApi;
     private final PomiarCzujnikaZewRepository pomiarCzujnikaZewRepository;
 
     @EventListener(ApplicationReadyEvent.class)

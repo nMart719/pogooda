@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Repository
-public class MateomaticsApi {
+public class MateomaticsApiService {
 
 
     private static final String BASE_URL = "https://api.meteomatics.com";

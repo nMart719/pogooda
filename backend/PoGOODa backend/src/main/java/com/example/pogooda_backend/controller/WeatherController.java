@@ -5,6 +5,8 @@ import com.example.pogooda_backend.model.dto.response.AktualnaPogodaDto;
 import com.example.pogooda_backend.model.dto.response.DanePogodoweDto;
 import com.example.pogooda_backend.model.dto.response.OcenaPogody;
 import com.example.pogooda_backend.model.dto.response.PrognozaPogodyDto;
+import com.example.pogooda_backend.service.ActualWeatherService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,8 +19,9 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = {"${client.react_address}"})
+@RequiredArgsConstructor
 public class WeatherController {
-
+    private final ActualWeatherService actualWeatherService;
 
 
     @GetMapping("/weather/history")
@@ -28,24 +31,7 @@ public class WeatherController {
 
     @GetMapping("/weather/actual")
     public AktualnaPogodaDto getActualWeatherInfo() {
-        //TODO: implementation
-        return new AktualnaPogodaDto(
-                "Wrocław",
-                new DanePogodoweDto(
-                        LocalDateTime.now(),
-                        1013f,
-                        0.90f,
-                        0.8f,
-                        20f,
-                        5f,
-                        -2f,
-                        0f,
-                        0.4f,
-                        0f,
-                        0f,
-                        OcenaPogody.FULL_CLOUDY
-                        )
-        );
+        return actualWeatherService.aktualneWarunki();
     }
 
     @GetMapping("/weather/forecast")

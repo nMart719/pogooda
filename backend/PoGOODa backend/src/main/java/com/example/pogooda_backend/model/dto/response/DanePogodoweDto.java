@@ -37,4 +37,6 @@ public class DanePogodoweDto {
 
     @NotNull
     private OcenaPogody ocenaPogody;
+
+
 }

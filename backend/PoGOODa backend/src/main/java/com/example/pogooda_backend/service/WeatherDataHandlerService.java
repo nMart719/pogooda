@@ -1,6 +1,6 @@
 package com.example.pogooda_backend.service;
 
-import com.example.pogooda_backend.external_weather_api.MateomaticsApi;
+import com.example.pogooda_backend.external_weather_api.MateomaticsApiService;
 import com.example.pogooda_backend.model.jpa.PomiarCzujnika;
 import com.example.pogooda_backend.model.jpa.PomiarCzujnikaZew;
 import com.example.pogooda_backend.repository.PomiarCzujnikaZewRepository;
@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Service @RequiredArgsConstructor
 public class WeatherDataHandlerService {
 
-    private final MateomaticsApi mateomaticsApi;
+    private final MateomaticsApiService mateomaticsApi; //ten serwis udaje nasze czujniki w stacji pogodowej
+                                                        //nie zdążę już podpinać tych danych do _wymyślanych_ stacji pogodowej, więc upraszczam cały proces (zwłaszcza, że na froncie i tak tego nie widać i nie mamy możliwości wyboru stacji pogodowej)
     private final PomiarCzujnikaZewRepository pomiarCzujnikaZewRepository;
 
     public List<PomiarCzujnikaZew> getWeatherHistory() {

@@ -24,7 +24,7 @@ export default function ForecastBadge(props) {
                 height={"18px"}
                 className="smallIcon"
             />
-            {danePogodoweDto.opadyDeszczu*100}%
+            {danePogodoweDto.opadyDeszczu}%
         </p>
         </>
 }

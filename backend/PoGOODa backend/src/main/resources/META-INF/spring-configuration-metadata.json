@@ -4,6 +4,21 @@
       "name": "client.react_address",
       "type": "java.lang.String",
       "description": "Address of react app for CSRF"
+    },
+    {
+      "name": "weather_station.place_name",
+      "type": "java.lang.String",
+      "description": "Name of place/city of weather station"
+    },
+    {
+      "name": "weather_station.lat",
+      "type": "java.lang.Float",
+      "description": "Latitude of weather station"
+    },
+    {
+      "name": "weather_station.lon",
+      "type": "java.lang.Float",
+      "description": "Longitude of weather station"
     }
   ]
 }

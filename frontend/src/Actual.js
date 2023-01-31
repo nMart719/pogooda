@@ -93,7 +93,7 @@ class Actual extends React.Component {
                               height={"25px"}
                               className="smallIcon"
                           />
-                          &nbsp;{this.actualWeather.najnowszyPomiar.wilgotnoscZewnetrzna * 100}%
+                          &nbsp;{this.actualWeather.najnowszyPomiar.wilgotnoscZewnetrzna}%
                         </h2>
                       </li>
                       <li>
