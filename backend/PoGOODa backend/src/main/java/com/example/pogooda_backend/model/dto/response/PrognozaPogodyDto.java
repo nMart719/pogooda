@@ -5,14 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 
 @Getter @Setter @AllArgsConstructor
-public class AktualnaPogodaDto {
-
+public class PrognozaPogodyDto {
     @NotNull
     private String miejsce;
 
     @NotNull
-    private DanePogodoweDto najnowszyPomiar;
-
+    List<DanePogodoweDto> prognozy;
 }
