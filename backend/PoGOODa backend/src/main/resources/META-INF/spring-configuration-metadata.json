@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "client.react_address",
+      "type": "java.lang.String",
+      "description": "Address of react app for CSRF"
+    }
+  ]
+}

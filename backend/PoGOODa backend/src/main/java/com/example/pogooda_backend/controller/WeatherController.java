@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"${client.react_address}"})
 public class WeatherController {
 
 
@@ -25,7 +26,6 @@ public class WeatherController {
         throw new UnsupportedOperationException();
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8082"})
     @GetMapping("/weather/actual")
     public AktualnaPogodaDto getActualWeatherInfo() {
         //TODO: implementation
@@ -48,7 +48,6 @@ public class WeatherController {
         );
     }
 
-    @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8082"})
     @GetMapping("/weather/forecast")
     public PrognozaPogodyDto getTenDaysForecast() {
         List<DanePogodoweDto> prognozy = new ArrayList<>();
