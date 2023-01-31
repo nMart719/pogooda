@@ -1,18 +1,15 @@
-package com.example.pogooda_backend.external_wather_api;
+package com.example.pogooda_backend.external_weather_api;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import static org.apache.commons.lang3.ObjectUtils.max;
 
 @Repository
 public class MateomaticsApi {
@@ -21,11 +18,20 @@ public class MateomaticsApi {
     private static final String BASE_URL = "https://api.meteomatics.com";
 
     private List<String> allParameters = List.of("t_2m:C", "relative_humidity_2m:p", "pressure_100m:hPa", "prob_precip_1h:p", "pm10:ugm3", "wind_speed_FL10:kmh", "uv:idx", "relative_humidity_2m:p", "dew_point_2m:C", "windchill:C");
+
+    public WeatherSensorsDto readLatest() throws IOException {
+
+        return handleResponse(request(
+                LocalDateTime.now(),
+                null,
+                getConnectedParameters(),
+                51.1089776f,
+                17.0326689f
+        ));
+    }
+
     public WeatherSensorsDto fullRead(LocalDateTime from) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        allParameters.forEach(s -> sb.append(s).append(","));
-        sb.deleteCharAt(sb.length()-1);
-        String parameter = sb.toString();
+
 
         if (from == null || LocalDateTime.now().minusDays(1).isAfter(from))
             from = LocalDateTime.now().minusDays(1);
@@ -33,10 +39,18 @@ public class MateomaticsApi {
         return handleResponse(request(
                 from,
                 LocalDateTime.now(),
-                parameter,
+                getConnectedParameters(),
                 51.1089776f,
                 17.0326689f
         ));
+    }
+
+    private String getConnectedParameters()
+    {
+        StringBuilder sb = new StringBuilder();
+        allParameters.forEach(s -> sb.append(s).append(","));
+        sb.deleteCharAt(sb.length()-1);
+        return sb.toString();
     }
 
     private static WeatherSensorsDto handleResponse(Response response) throws IOException {

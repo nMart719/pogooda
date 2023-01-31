@@ -1,7 +1,7 @@
 package com.example.pogooda_backend.service;
 
-import com.example.pogooda_backend.external_wather_api.MateomaticsApi;
-import com.example.pogooda_backend.external_wather_api.WeatherSensorsDto;
+import com.example.pogooda_backend.external_weather_api.MateomaticsApi;
+import com.example.pogooda_backend.external_weather_api.WeatherSensorsDto;
 import com.example.pogooda_backend.model.jpa.PomiarCzujnika;
 import com.example.pogooda_backend.model.jpa.PomiarCzujnikaZew;
 import com.example.pogooda_backend.repository.PomiarCzujnikaZewRepository;
@@ -35,56 +35,7 @@ public class DataFillerService {
             else
                 weatherSensorsDto = mateomaticsApi.fullRead(null);
 
-            Map<LocalDateTime, PomiarCzujnikaZew> reads = new HashMap<>();
-            weatherSensorsDto.getData().get(0).getCoordinates().get(0).getDates().forEach(singleData -> {
-                LocalDateTime time = LocalDateTime.parse(singleData.getDate(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-                PomiarCzujnikaZew pomiarCzujnikaZew = new PomiarCzujnikaZew();
-                pomiarCzujnikaZew.setCzasOdczytu(Timestamp.valueOf(time));
-                reads.put(time, pomiarCzujnikaZew);
-            });
-
-            weatherSensorsDto.getData().forEach(dataPerParameter -> {
-                String parameter = dataPerParameter.getParameter();
-                dataPerParameter.getCoordinates().get(0).getDates().forEach(singleData -> {
-                    LocalDateTime time = LocalDateTime.parse(singleData.getDate(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-                    PomiarCzujnikaZew pomiarCzujnikaZew = reads.get(time);
-                    String value = singleData.getValue();
-                    switch (parameter) {
-                        case "t_2m:C":
-                            pomiarCzujnikaZew.setTemperaturaZewnetrzna(Float.valueOf(value));
-                            break;
-                        case "relative_humidity_2m:p":
-                            pomiarCzujnikaZew.setWilgotnoscZewnetrzna(Float.valueOf(value));
-                            break;
-                        case "pressure_100m:hPa":
-                            pomiarCzujnikaZew.setCisnienieAtmosferyczne(Float.valueOf(value));
-                            break;
-                        case "prob_precip_1h:p":
-                            pomiarCzujnikaZew.setOpadyDeszczu(Float.valueOf(value));
-                            break;
-                        case "pm10:ugm3":
-                            pomiarCzujnikaZew.setJakoscPowietrza(Float.valueOf(value));
-                            break;
-                        case "wind_speed_FL10:kmh":
-                            pomiarCzujnikaZew.setPredkoscWiatru(Float.valueOf(value));
-                            break;
-                        case "uv:idx":
-                            pomiarCzujnikaZew.setUvi(Float.valueOf(value));
-                            pomiarCzujnikaZew.setPromieniowanieSloneczne(Float.valueOf(value));
-                            break;
-                        case "dew_point_2m:C":
-                            pomiarCzujnikaZew.setFars(Float.valueOf(value));
-                            break;
-                        case "windchill:C":
-                            pomiarCzujnikaZew.setTemperaturaOdczuwalna(Float.valueOf(value));
-                            break;
-                        default:
-                            break;
-                    }
-                    reads.put(time, pomiarCzujnikaZew);
-                });
-
-            });
+            Map<LocalDateTime, PomiarCzujnikaZew> reads = convertWeatherSensorsDto(weatherSensorsDto);
             safelyAppendReads(reads.values());
 
         } catch (IOException e) {
@@ -93,6 +44,60 @@ public class DataFillerService {
             System.err.println("Mapping data from external weather api failed!");
         }
 
+    }
+
+    public static Map<LocalDateTime, PomiarCzujnikaZew> convertWeatherSensorsDto(WeatherSensorsDto weatherSensorsDto) {
+        Map<LocalDateTime, PomiarCzujnikaZew> reads = new HashMap<>();
+        weatherSensorsDto.getData().get(0).getCoordinates().get(0).getDates().forEach(singleData -> {
+            LocalDateTime time = LocalDateTime.parse(singleData.getDate(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+            PomiarCzujnikaZew pomiarCzujnikaZew = new PomiarCzujnikaZew();
+            pomiarCzujnikaZew.setCzasOdczytu(Timestamp.valueOf(time));
+            reads.put(time, pomiarCzujnikaZew);
+        });
+
+        weatherSensorsDto.getData().forEach(dataPerParameter -> {
+            String parameter = dataPerParameter.getParameter();
+            dataPerParameter.getCoordinates().get(0).getDates().forEach(singleData -> {
+                LocalDateTime time = LocalDateTime.parse(singleData.getDate(), DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+                PomiarCzujnikaZew pomiarCzujnikaZew = reads.get(time);
+                String value = singleData.getValue();
+                switch (parameter) {
+                    case "t_2m:C":
+                        pomiarCzujnikaZew.setTemperaturaZewnetrzna(Float.valueOf(value));
+                        break;
+                    case "relative_humidity_2m:p":
+                        pomiarCzujnikaZew.setWilgotnoscZewnetrzna(Float.valueOf(value));
+                        break;
+                    case "pressure_100m:hPa":
+                        pomiarCzujnikaZew.setCisnienieAtmosferyczne(Float.valueOf(value));
+                        break;
+                    case "prob_precip_1h:p":
+                        pomiarCzujnikaZew.setOpadyDeszczu(Float.valueOf(value));
+                        break;
+                    case "pm10:ugm3":
+                        pomiarCzujnikaZew.setJakoscPowietrza(Float.valueOf(value));
+                        break;
+                    case "wind_speed_FL10:kmh":
+                        pomiarCzujnikaZew.setPredkoscWiatru(Float.valueOf(value));
+                        break;
+                    case "uv:idx":
+                        pomiarCzujnikaZew.setUvi(Float.valueOf(value));
+                        pomiarCzujnikaZew.setPromieniowanieSloneczne(Float.valueOf(value));
+                        break;
+                    case "dew_point_2m:C":
+                        pomiarCzujnikaZew.setFars(Float.valueOf(value));
+                        break;
+                    case "windchill:C":
+                        pomiarCzujnikaZew.setTemperaturaOdczuwalna(Float.valueOf(value));
+                        break;
+                    default:
+                        break;
+                }
+                reads.put(time, pomiarCzujnikaZew);
+            });
+
+        });
+        return reads;
     }
 
     private void safelyAppendReads(Collection<PomiarCzujnikaZew> pomiarCzujnikaZews) {
