@@ -37,7 +37,6 @@ export default function BigIcon(props) {
         return <BigSunCloudRain />;
     else if (ocenaPogody === "SUNNY")
         return <BigRain />;
+    else
+        return <img src="" alt={ocenaPogody} height={"45%"}/>
 }
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<BigIcon ocenaPogody="SUNNY" />);

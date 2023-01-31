@@ -8,16 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon, library } from "@fortawesome/fontawesome-svg-core";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-solid-svg-icons";
-import cloudy from "./images/cloudy.png";
+import cloudy from "./images/small/cloudy.png";
 import wind from "./images/wind.png";
 import humidity from "./images/humidity.png";
 import pression from "./images/pression.png";
 import dewPoint from "./images/dew_point.png";
 import uv from "./images/uv.png";
 import pollution from "./images/pollution.png";
-import flash from "./images/flash.png";
-import rain from "./images/rain.png";
-import sunny from "./images/sunny.png";
 import { Outlet, Link } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import React from "react";
@@ -160,9 +157,6 @@ class Actual extends React.Component {
           }
         }
     )
-  }
-  updateFields() {
-    this.miejsce = this.actualWeather.miejsce
   }
   render() {
     return (

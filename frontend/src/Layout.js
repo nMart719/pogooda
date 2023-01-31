@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icon, library } from "@fortawesome/fontawesome-svg-core";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-solid-svg-icons";
-import cloudy from "./images/cloudy.png";
+import cloudy from "./images/small/cloudy.png";
 import wind from "./images/wind.png";
 import humidity from "./images/humidity.png";
 import pression from "./images/pression.png";
