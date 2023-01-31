@@ -7,7 +7,7 @@ export default function ForecastBadge(props) {
     const danePogodoweDto = props.danePogodoweDto
     return <><header className="center biggerText">{danePogodoweDto.czasOdczytu.toLocaleDateString('en-US', {weekday: 'short'}).toUpperCase()}</header>
         <SmallIcon ocenaPogody={danePogodoweDto.ocenaPogody}></SmallIcon>
-        <p className="center biggerText">{danePogodoweDto.temperaturaZewnetrzna}&#176;C</p>
+        <p className="center biggerText">{danePogodoweDto.temperaturaZewnetrzna.toFixed(1)}&#176;C</p>
         <p>
             <img
                 src={wind}
@@ -15,7 +15,7 @@ export default function ForecastBadge(props) {
                 height={"20px"}
                 className="smallIcon"
             />
-            {danePogodoweDto.predkoscWiatru} km/h
+            {danePogodoweDto.predkoscWiatru.toFixed(0)} km/h
         </p>
         <p>
             <img
