@@ -19,6 +19,8 @@ import { Outlet, Link } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import React from "react";
 import BigIcon from "./BigIconComponent"
+import { showSuccessMessage, showErrorMessage, showInfoMessage, showWarningMessage } from './notifications/notofications';
+
 import {
   faCalendar,
   faClock,
@@ -32,6 +34,8 @@ import {WeatherControllerApi} from "./api/WeatherControllerApi";
 import {ApiClient} from "./ApiClient";
 import {AktualnaPogodaDto} from "./model/AktualnaPogodaDto";
 import ReactDOM from 'react-dom';
+import {HintsControllerApi} from "./api/HintsControllerApi";
+import {wait} from "@testing-library/user-event/dist/utils";
 library.add(
   faCalendar,
   faClock,
@@ -49,8 +53,27 @@ class Actual extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.actualWeather = null;
-    const api = new WeatherControllerApi(new ApiClient());
-    this.fetchActualWeatherInfo(api);
+    const weatherApi = new WeatherControllerApi(new ApiClient());
+    this.fetchActualWeatherInfo(weatherApi);
+    const hintsApi = new HintsControllerApi(new ApiClient());
+    this.fetchHints(hintsApi)
+  }
+
+  fetchHints(hintsApi) {
+      hintsApi.readActualHints(
+          (error, data, response) => {
+            if (error)
+                console.error(error);
+            else
+            {
+                console.log('Hints API called successfully. Returned data: ' + data);
+                var actualTime = 0
+                data.forEach(hint => {
+                    wait(actualTime).then(() => showWarningMessage(hint.title, hint.description));
+                    actualTime += 3000;
+                })
+            }
+      });
   }
 
   fetchActualWeatherInfo(weatherControllerApi) {
@@ -67,7 +90,7 @@ class Actual extends React.Component {
                 document.getElementById("updatePlace")
             );
           } else {
-            console.log('API called successfully. Returned data: ' + data);
+            console.log('Weather API called successfully. Returned data: ' + data);
             this.actualWeather = data
             ReactDOM.render(
                 <div id="main">
@@ -151,6 +174,7 @@ class Actual extends React.Component {
                       </li>
                     </ul>
                   </section>
+                  <div id="snackbar-fixed-container"></div>
                 </div>,
                 document.getElementById("updatePlace")
             )
