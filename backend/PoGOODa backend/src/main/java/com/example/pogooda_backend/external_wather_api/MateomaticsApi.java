@@ -3,6 +3,7 @@ package com.example.pogooda_backend.external_wather_api;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -11,21 +12,26 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@Service
+import static org.apache.commons.lang3.ObjectUtils.max;
+
+@Repository
 public class MateomaticsApi {
 
 
     private static final String BASE_URL = "https://api.meteomatics.com";
 
     private List<String> allParameters = List.of("t_2m:C", "relative_humidity_2m:p", "pressure_100m:hPa", "prob_precip_1h:p", "pm10:ugm3", "wind_speed_FL10:kmh", "uv:idx", "relative_humidity_2m:p", "dew_point_2m:C", "windchill:C");
-    public WeatherSensorsDto fullRead() throws IOException {
+    public WeatherSensorsDto fullRead(LocalDateTime from) throws IOException {
         StringBuilder sb = new StringBuilder();
         allParameters.forEach(s -> sb.append(s).append(","));
         sb.deleteCharAt(sb.length()-1);
         String parameter = sb.toString();
 
+        if (from == null || LocalDateTime.now().minusDays(1).isAfter(from))
+            from = LocalDateTime.now().minusDays(1);
+
         return handleResponse(request(
-                LocalDateTime.now().minusDays(1),
+                from,
                 LocalDateTime.now(),
                 parameter,
                 51.1089776f,

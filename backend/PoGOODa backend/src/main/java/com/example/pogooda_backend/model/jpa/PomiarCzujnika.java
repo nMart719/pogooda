@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -13,7 +13,7 @@ public abstract class PomiarCzujnika {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Date czasOdczytu;
+    private Timestamp czasOdczytu;
 
     @ManyToOne
     private StacjaPogodowa stacjaPogodowa;
