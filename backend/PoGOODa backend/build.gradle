@@ -24,7 +24,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.hibernate.validator:hibernate-validator'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
-    implementation 'org.postgresql:postgresql'
+    runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'com.squareup.okhttp3:okhttp'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
 
