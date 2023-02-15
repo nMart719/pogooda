@@ -36,13 +36,13 @@ public class Example {
 
         pomiarCzujnikaZewRepository.save(pomiarCzujnikaZew);
 
-        Optional<PomiarCzujnikaZew> pomiar = pomiarCzujnikaZewRepository.findById(105);
-        if (pomiar.isPresent()) {
-            PomiarCzujnikaZew pomiarCzujnikaZew1 = pomiar.get();
-            pomiarCzujnikaZewRepository.delete(pomiarCzujnikaZew1);
-        }
-
-
-        pomiarCzujnikaZewRepository.deleteById(105);
+//        Optional<PomiarCzujnikaZew> pomiar = pomiarCzujnikaZewRepository.findById(105);
+//        if (pomiar.isPresent()) {
+//            PomiarCzujnikaZew pomiarCzujnikaZew1 = pomiar.get();
+//            pomiarCzujnikaZewRepository.delete(pomiarCzujnikaZew1);
+//        }
+//
+//
+//        pomiarCzujnikaZewRepository.deleteById(105);
     }
 }
