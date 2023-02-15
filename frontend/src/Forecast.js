@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 // import "./App.css";
 
 import React from "react";
-import "./Nav.css";
+import "./Layout.css";
 import "./Message.css";
 import "./Forecast.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,8 +33,8 @@ import {
   faExclamationCircle,
   faLocationArrow,
 } from "@fortawesome/fontawesome-free-solid";
-import {WeatherControllerApi} from "./api/WeatherControllerApi";
-import {ApiClient} from "./ApiClient";
+import { WeatherControllerApi } from "./api/WeatherControllerApi";
+import { ApiClient } from "./ApiClient";
 import ReactDOM from "react-dom";
 library.add(
   faCalendar,
@@ -55,23 +55,24 @@ class Forecast extends React.Component {
   }
 
   fetchWeatherForecast(weatherControllerApi) {
-    weatherControllerApi.getTenDaysForecast(
-        (error, data, response) => {
-          if (error) {
-            console.error(error);
-            ReactDOM.render(
-                <div id="main">
-                  <p className="loading_info">Błąd połączenia z serwerem. Spróbuj ponownie później. </p>
-                  )
-                </div>,
-                document.getElementById("updatePlace"));
-          }
-          else {
-            console.log('API called successfully. Returned data: ' + data);
-            this.forecast = data
-            ReactDOM.render(
-                <div id="main">
-                  {/* <div className="message">
+    weatherControllerApi.getTenDaysForecast((error, data, response) => {
+      if (error) {
+        console.error(error);
+        ReactDOM.render(
+          <div id="main">
+            <p className="loading_info">
+              Błąd połączenia z serwerem. Spróbuj ponownie później.{" "}
+            </p>
+            )
+          </div>,
+          document.getElementById("updatePlace")
+        );
+      } else {
+        console.log("API called successfully. Returned data: " + data);
+        this.forecast = data;
+        ReactDOM.render(
+          <div id="main">
+            {/* <div className="message">
                     <h1>
                       <FontAwesomeIcon icon={["fas", "exclamation-circle"]} />
                       &nbsp; Add some minerals!
@@ -81,29 +82,31 @@ class Forecast extends React.Component {
                     </p>
                   </div> */}
 
-                  <main>
-                    <ul id="days">
-                      {this.forecast.prognozy.map((dayForecast, i) => <li><ForecastBadge danePogodoweDto={dayForecast} /></li>)}
-                    </ul>
-                  </main>
-                </div>,
-                document.getElementById("updatePlace")
-            )
-          }
-        }
-    )
+            <main>
+              <ul id="days">
+                {this.forecast.prognozy.map((dayForecast, i) => (
+                  <li>
+                    <ForecastBadge danePogodoweDto={dayForecast} />
+                  </li>
+                ))}
+              </ul>
+            </main>
+          </div>,
+          document.getElementById("updatePlace")
+        );
+      }
+    });
   }
 
   render() {
     return (
-        <div id="updatePlace">
-          <div id="main">
-            <p class="loading_info">Pobieranie danych z serwera...</p>
-          </div>
+      <div id="updatePlace">
+        <div id="main">
+          <p class="loading_info">Pobieranie danych z serwera...</p>
         </div>
+      </div>
     );
   }
 }
-
 
 export default Forecast;

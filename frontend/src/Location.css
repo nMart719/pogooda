@@ -1,0 +1,23 @@
+label {
+  white-space: nowrap;
+  font-size: 24px;
+  font-weight: 300;
+
+  font-family: "Inter", sans-serif;
+}
+
+::placeholder {
+  color: #374957;
+}
+
+select {
+  background-color: rgba(8, 162, 211, 39%);
+  border-width: 0px;
+  font-size: 20px;
+  border-radius: 15px;
+  padding: 5px;
+  color: #374957;
+  margin-top: 20px;
+  width: 240px;
+  padding: 10px;
+}

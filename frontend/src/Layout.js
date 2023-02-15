@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 // import "./App.css";
-import "./Nav.css";
+import "./Layout.css";
 import "./Message.css";
 import "./Actual.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -60,12 +60,7 @@ const Layout = () => {
             </li>
             <li>
               <a>
-                <FontAwesomeIcon icon={["fas", "chart-bar"]} />
-              </a>
-            </li>
-            <li>
-              <a>
-                <FontAwesomeIcon icon={["fas", "power-off"]} />
+                <FontAwesomeIcon icon={["fas", "location-arrow"]} />
               </a>
             </li>
           </ul>

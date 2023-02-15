@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 // import "./App.css";
 import "./global.css";
-import "./Layout.css";
+import "./Nav.css";
 import "./Message.css";
 import "./Forecast.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,6 +26,7 @@ import {
   showWarningMessage,
 } from "./notifications/notofications";
 
+import location from "./images/small/location.png";
 import {
   faCalendar,
   faClock,
@@ -95,100 +96,25 @@ class Actual extends React.Component {
         this.actualWeather = data;
         ReactDOM.render(
           <div id="main">
-            <section id="left">
-              <h1>{this.actualWeather.miejsce}</h1>
-              <ul>
-                <li>
-                  <h2>
-                    <img
-                      src={wind}
-                      alt="wind icon"
-                      height={"25px"}
-                      className="smallIcon"
-                    />
-                    &nbsp;{this.actualWeather.najnowszyPomiar.predkoscWiatru}{" "}
-                    km/h
-                  </h2>
-                </li>
-                <li>
-                  <h2>
-                    <img
-                      src={humidity}
-                      alt="humidity icon"
-                      height={"25px"}
-                      className="smallIcon"
-                    />
-                    &nbsp;
-                    {this.actualWeather.najnowszyPomiar.wilgotnoscZewnetrzna}%
-                  </h2>
-                </li>
-                <li>
-                  <h2>
-                    <img
-                      src={pression}
-                      alt="pression icon"
-                      height={"25px"}
-                      className="smallIcon"
-                    />
-                    &nbsp;
-                    {this.actualWeather.najnowszyPomiar.cisnienieAtmosferyczne}
-                    hPa
-                  </h2>
-                </li>
-              </ul>
+            <section>
+              <div id="gap"></div>
+              <div>
+                <label for="location" class="placeholder">
+                  <img
+                    src={location}
+                    alt="wind icon"
+                    height={"25px"}
+                    className="smallIcon"
+                  />
+                  &nbsp;Change location to:
+                </label>
+                <select id="location">
+                  <option>Kyiv</option>
+                  <option>Kharkiv</option>
+                </select>
+              </div>
             </section>
-            <section id="bigIcon">
-              <BigIcon
-                ocenaPogody={this.actualWeather.najnowszyPomiar.ocenaPogody}
-              ></BigIcon>
-            </section>
-            <section id="right">
-              <h2 id="temperature">
-                {this.actualWeather.najnowszyPomiar.temperaturaZewnetrzna}
-                &#176;C
-              </h2>
-              <h2>
-                Feels like{" "}
-                {this.actualWeather.najnowszyPomiar.temperaturaOdczuwalna}
-                &#176;C
-              </h2>
-              <ul>
-                <li>
-                  <h2>
-                    <img
-                      src={dewPoint}
-                      alt="dew point icon"
-                      height={"25px"}
-                      className="smallIcon"
-                    />
-                    &nbsp;{this.actualWeather.najnowszyPomiar.fars}&#176;C
-                  </h2>
-                </li>
-                <li>
-                  <h2>
-                    <img
-                      src={uv}
-                      alt="uv icon"
-                      height={"25px"}
-                      className="smallIcon"
-                    />
-                    &nbsp;
-                    {this.actualWeather.najnowszyPomiar.promieniowanieSloneczne}
-                  </h2>
-                </li>
-                <li>
-                  <h2>
-                    <img
-                      src={pollution}
-                      alt="pollution icon"
-                      height={"25px"}
-                      className="smallIcon"
-                    />
-                    &nbsp;{this.actualWeather.najnowszyPomiar.jakoscPowietrza}
-                  </h2>
-                </li>
-              </ul>
-            </section>
+
             <div id="snackbar-fixed-container"></div>
           </div>,
           document.getElementById("updatePlace")
