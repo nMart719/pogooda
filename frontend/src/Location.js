@@ -108,6 +108,7 @@ class Actual extends React.Component {
                   />
                   &nbsp;Change location to:
                 </label>
+
                 <select id="location">
                   <option>Kyiv</option>
                   <option>Kharkiv</option>

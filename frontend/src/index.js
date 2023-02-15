@@ -22,9 +22,9 @@ export default function App() {
           <Route path="forecast" element={<Forecast />} />
           <Route path="actual" element={<Actual />} />
 
-          {/* <Route path="location" element={<Location />} />
+          <Route path="location" element={<Location />} />
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} /> */}
+          <Route path="register" element={<Register />} />
           {/* <Route path="*" element={<NoPage />} /> */}
         </Route>
       </Routes>
