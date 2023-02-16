@@ -54,6 +54,7 @@ library.add(
 
 class Location extends React.Component {
 	constructor(props, context) {
+		debugger;
 		super(props, context);
 		this.actualWeather = null;
 		const weatherApi = new WeatherControllerApi(new ApiClient());
@@ -89,6 +90,7 @@ class Location extends React.Component {
 					document.getElementById("updatePlace")
 				);
 			} else {
+				debugger;
 				console.log("Weather API called successfully. Returned data: " + data);
 				this.actualWeather = data;
 				ReactDOM.render(

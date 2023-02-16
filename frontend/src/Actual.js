@@ -39,7 +39,7 @@ import { WeatherControllerApi } from "./api/WeatherControllerApi";
 import { ApiClient } from "./ApiClient";
 import { AktualnaPogodaDto } from "./model/AktualnaPogodaDto";
 import ReactDOM from "react-dom";
-import { HintsControllerApi } from "./api/HintsControllerApi";
+// import { HintsControllerApi } from "./api/HintsControllerApi";
 import { wait } from "@testing-library/user-event/dist/utils";
 library.add(
 	faCalendar,
@@ -57,25 +57,25 @@ class Actual extends React.Component {
 		this.actualWeather = null;
 		const weatherApi = new WeatherControllerApi(new ApiClient());
 		this.fetchActualWeatherInfo(weatherApi);
-		const hintsApi = new HintsControllerApi(new ApiClient());
-		this.fetchHints(hintsApi);
+		// const hintsApi = new HintsControllerApi(new ApiClient());
+		// this.fetchHints(hintsApi);
 	}
 
-	fetchHints(hintsApi) {
-		hintsApi.readActualHints((error, data, response) => {
-			if (error) console.error(error);
-			else {
-				console.log("Hints API called successfully. Returned data: " + data);
-				var actualTime = 0;
-				data.forEach((hint) => {
-					wait(actualTime).then(() =>
-						showWarningMessage(hint.title, hint.description)
-					);
-					actualTime += 3000;
-				});
-			}
-		});
-	}
+	// fetchHints(hintsApi) {
+	// 	hintsApi.readActualHints((error, data, response) => {
+	// 		if (error) console.error(error);
+	// 		else {
+	// 			console.log("Hints API called successfully. Returned data: " + data);
+	// 			var actualTime = 0;
+	// 			data.forEach((hint) => {
+	// 				wait(actualTime).then(() =>
+	// 					showWarningMessage(hint.title, hint.description)
+	// 				);
+	// 				actualTime += 3000;
+	// 			});
+	// 		}
+	// 	});
+	// }
 
 	fetchActualWeatherInfo(weatherControllerApi) {
 		weatherControllerApi.getActualWeatherInfo((error, data, response) => {
@@ -88,12 +88,16 @@ class Actual extends React.Component {
 					document.getElementById("updatePlace")
 				);
 			} else {
-				console.log("Weather API called successfully. Returned data: " + data);
+				console.log(
+					"Weather API called successfully. Returned data: " +
+						JSON.stringify(data)
+				);
 				this.actualWeather = data;
+
 				ReactDOM.render(
 					<div id="main">
 						<section id="left">
-							<h1>{this.actualWeather.miejsce}</h1>
+							<h1>{this.actualWeather.name}</h1>
 							<ul>
 								<li>
 									<h2>
