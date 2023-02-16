@@ -124,7 +124,7 @@ class Location extends React.Component {
 		return (
 			<div id="updatePlace">
 				<div id="main">
-					<p class="loading_info">Pobieranie danych z serwera...</p>
+					<p class="loading_info">Getting data from server...</p>
 				</div>
 			</div>
 		);
